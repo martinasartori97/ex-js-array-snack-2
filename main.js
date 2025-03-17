@@ -44,3 +44,34 @@ const books = [
         tags: ['html', 'advanced', 'junior', 'mid-senior']
     },
 ];
+
+console.log(books);
+
+const longBooks = books.filter(b => b.pages > 300);
+const longBooksTitle = longBooks.map(b => b.title);
+longBooksTitle.forEach(t => console.log(t));
+const availableBooks = books.filter(b => b.available);
+const discountedBooks = availableBooks.map(book => {
+    const price = parseFloat(book.price.replace('£', ''))
+    const discountedPrice = (price * .8).toFixed(2);
+    return {
+        ...book,
+        price: `${discountedPrice}£`
+    }
+});
+const fullPriceBook = discountedBooks.find(book => {
+    const price = parseFloat(book.price.replace('£', ''));
+    return price % 1 === 0;
+
+})
+const authors = books.map(b => b.author);
+const areAuthorsAdults = authors.every(a => a.age >= 18);
+authors.sort((a, b) => a.age - b.age);
+console.log(authors);
+
+
+
+
+
+
+
